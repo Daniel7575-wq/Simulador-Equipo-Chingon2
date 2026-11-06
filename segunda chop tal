@@ -1,0 +1,20 @@
+extends Control
+
+@onready var start_button = $VBoxContainer/StartButton
+@onready var quit_button = $VBoxContainer/QuitButton
+
+func _ready():
+    # Conectar las señales de los botones
+    start_button.pressed.connect(_on_start_button_pressed)
+    quit_button.pressed.connect(_on_quit_button_pressed)
+    
+    # Asegurar que el botón de inicio tenga el foco al arrancar (útil para navegar con teclado/mando)
+    start_button.grab_focus()
+
+func _on_start_button_pressed():
+    # Cambiar a la escena principal (ej. donde está el spawner de meteoritos y la nave)
+    get_tree().change_scene_to_file("res://escenas/nivel_principal.tscn")
+
+func _on_quit_button_pressed():
+    # Cerrar la aplicación
+    get_tree().quit()
